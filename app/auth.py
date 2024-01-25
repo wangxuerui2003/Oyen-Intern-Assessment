@@ -7,12 +7,12 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 from typing import Annotated
 from dotenv import load_dotenv
+from app import app
 import os
 
 
 load_dotenv('.env.local')
 
-from app import app
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
