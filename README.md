@@ -37,11 +37,13 @@ TODO
 
 **Manual**
 ```bash
+$ cd app/
+
 # Testing
-$ uvicorn app.main:app --reload
+$ uvicorn main:app --reload
 
 # Production
-$ uvicorn app.main:app --host 0.0.0.0 --port <desired-port>
+$ uvicorn main:app --host 0.0.0.0 --port <desired-port>
 ```
 
 **Docker**
