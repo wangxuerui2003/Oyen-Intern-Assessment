@@ -41,7 +41,7 @@ TODO
 $ uvicorn app.main:app --reload
 
 # Production
-$ 
+$ uvicorn app.main:app --host 0.0.0.0 --port <desired-port>
 ```
 
 **Docker**
