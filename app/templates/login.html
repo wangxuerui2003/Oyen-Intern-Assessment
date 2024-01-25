@@ -2,9 +2,13 @@
 
 {% block title %}Login{% endblock %}
 
-{% block content %}
+{% block body %}
 <h2>Login</h2>
-<form action="">
-  
+<form id="login-form">
+  <input type="text" id="username" placeholder="Username" required>
+  <input type="password" id="password" placeholder="Password" required>
+  <input type="submit">
 </form>
+
+<script src="{{ url_for('static', path='/js/login.js') }}"></script>
 {% endblock %}

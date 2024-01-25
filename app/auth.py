@@ -1,4 +1,5 @@
-from fastapi import Depends, HTTPException, status
+from fastapi import Cookie, Depends, HTTPException, status, Response
+from fastapi.responses import RedirectResponse
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel
 from datetime import datetime, timedelta, timezone
@@ -51,7 +52,7 @@ class UserInDB(User):
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+# oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 def verify_password(plain_password, hashed_password):
@@ -88,38 +89,38 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
     return encoded_jwt
 
 
-async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
-    credentials_exception = HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials",
-        headers={"WWW-Authenticate": "Bearer"},
-    )
+async def get_current_user(access_token: str = Cookie(None)):
+    if access_token is None:
+        return None
+    
     try:
+        token = access_token.split(" ")[1] if access_token.startswith("Bearer ") else access_token
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("sub")
         if username is None:
-            raise credentials_exception
+            return None
         token_data = TokenData(username=username)
     except JWTError:
-        raise credentials_exception
+        return None
     user = get_user(fake_users_db, username=token_data.username)
     if user is None:
-        raise credentials_exception
+        return None
     return user
 
 
 async def get_current_active_user(
     current_user: Annotated[User, Depends(get_current_user)]
 ):
-    if current_user.disabled:
+    if current_user is None:
         raise HTTPException(status_code=400, detail="Inactive user")
     return current_user
 
 
 @app.post("/token")
 async def login_for_access_token(
+    response: Response,
     form_data: Annotated[OAuth2PasswordRequestForm, Depends()]
-) -> Token:
+):
     user = authenticate_user(fake_users_db, form_data.username, form_data.password)
     if not user:
         raise HTTPException(
@@ -131,7 +132,9 @@ async def login_for_access_token(
     access_token = create_access_token(
         data={"sub": user.username}, expires_delta=access_token_expires
     )
-    return Token(access_token=access_token, token_type="bearer")
+
+    response.set_cookie(key="access_token", value=f"Bearer {access_token}", httponly=True)
+    return {"message": "Token has been set in the HttpOnly cookie"}
 
 
 @app.get("/users/me/", response_model=User)
@@ -140,9 +143,3 @@ async def read_users_me(
 ):
     return current_user
 
-
-@app.get("/users/me/items/")
-async def read_own_items(
-    current_user: Annotated[User, Depends(get_current_active_user)]
-):
-    return [{"item_id": "Foo", "owner": current_user.username}]

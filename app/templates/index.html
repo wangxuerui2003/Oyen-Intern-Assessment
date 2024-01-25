@@ -2,7 +2,13 @@
 
 {% block title %}Home{% endblock %}
 
-{% block content %}
+{% block body %}
 <h2>Welcome to the Home Page</h2>
 <p>This is the content of the home page.</p>
+
+<form id="logout-form">
+  <input type="submit" value="Logout">
+</form>
+
+<script src="{{ url_for('static', path='/js/logout.js') }}"></script>
 {% endblock %}
