@@ -7,32 +7,29 @@ Python 3.10+
 SQLite3
 
 
-## Setup (Manual)
+## Manual Setup
 
-**Linux Bash**
+**Linux Bash / Windows Powershell**
 ```bash
 # Install the python packages needed
 $ pip install -r requirements.txt
 
-$ cd app/
-
-# Generate a secret key for JWT authentication
-$ openssl rand -hex 32 | xargs -I {} echo "SECRET_KEY={}" >> .env
-```
-
-**Windows Powershell**
-```bash
-# Install the python packages needed
-$ pip install -r requirements.txt
+# Bash
+$ cp .env.example ./app/.env.local
+# Powershell
+$ Copy-Item -Path .\.env.example -Destination .\app\.env.local
 
 $ cd app/
 
 # Generate a secret key for JWT authentication
-$ openssl rand -hex 32 | ForEach-Object { "SECRET_KEY=$_" } | Out-File -Append -Encoding utf8 -FilePath .env
+$ openssl rand -hex 32  # copy the output
+
+# Use your favourite text editor to open the .env.local file
+# Paste the secret key to the SECRET_KEY field
 ```
 
 
-## Setup (Docker)
+## Docker Setup (Recommended)
 TODO
 
 
