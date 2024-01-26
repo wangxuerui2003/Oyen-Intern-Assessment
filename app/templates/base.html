@@ -3,12 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}">
   <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
   <header>
-    <h1>FastAPI User Authentication project using JWT</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid justify-content-between">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Oyen Insurance Assessment</a>
+          <div class="navbar-nav">
+            <a class="nav-link" id="logout-btn" href="#">logout</a>
+          </div>
+      </div>
+    </nav>
   </header>
 
   <div id="error-message" class="hidden"></div>

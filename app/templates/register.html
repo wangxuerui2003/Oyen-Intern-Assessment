@@ -3,17 +3,37 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-<h2>Register</h2>
-<form id="register-form">
-  <input type="text" id="username" placeholder="Username" required>
-  <input type="text" id="email" placeholder="Email" required>
-  <input type="text" id="full-name" placeholder="Full Name">
-  <input type="password" id="password" placeholder="Password" required>
-  <input type="password" id="confirm-password" placeholder="Confirm Password" required>
-  <input type="submit">
-</form>
 
-<a href="/login.html">Already have an account? Click here to login!</a>
+<div class="container">
+  <h1>Register</h1>
+
+  <form id="register-form">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email">
+    </div>
+    <div class="mb-3">
+      <label for="full-name" class="form-label">Full Name</label>
+      <input type="text" class="form-control" id="full-name">
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password">
+    </div>
+    <div class="mb-3">
+      <label for="confirm-password" class="form-label">Confirm Password</label>
+      <input type="password" class="form-control" id="confirm-password" aria-describedby="confirmPwdHelp">
+      <div id="confirmPwdHelp" class="form-text">Must be the same with Passwor</div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="/login.html" class="btn btn-secondary">Already have an account? Click here to login!</a>
+  </form>
+</div>
+
 
 <script src="{{ url_for('static', path='/js/register.js') }}"></script>
 {% endblock %}

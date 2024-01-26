@@ -3,14 +3,23 @@
 {% block title %}Login{% endblock %}
 
 {% block body %}
-<h2>Login</h2>
-<form id="login-form">
-  <input type="text" id="username" placeholder="Username" required>
-  <input type="password" id="password" placeholder="Password" required>
-  <input type="submit">
-</form>
+<div class="container">
+  <h1>Login</h1>
 
-<a href="{{ url_for('register') }}">Don't have an account yet? Click to register!</a>
+  <form id="login-form">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username">
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="{{ url_for('register') }}" class="btn btn-secondary">Don't have an account yet? Click to register!</a>
+  </form>
+</div>
+
 
 <script src="{{ url_for('static', path='/js/login.js') }}"></script>
 {% endblock %}

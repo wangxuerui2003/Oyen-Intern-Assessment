@@ -1,7 +1,4 @@
-document.getElementById('logout-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-
-
+document.getElementById('logout-btn').addEventListener('click', (e) => {
   fetch('/logout', {
     method: 'POST',
     credentials: 'include'

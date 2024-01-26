@@ -13,3 +13,12 @@
         opacity: 0;
     }
 }
+
+#welcome-home {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    font-weight: bold;
+}
