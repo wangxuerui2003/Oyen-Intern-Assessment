@@ -61,10 +61,7 @@ $ docker run -d -p <host-port>:8000 --name <your-container-name> <your-image-nam
 	4. Successfully login to the Home Page!
 ```
 
-<video controls width="400">
-    <source src="https://youtu.be/3iMkvm7l8cI" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
+[Video Demo]("https://youtu.be/EIZAGg71J9o")
 
 
 ## Author
