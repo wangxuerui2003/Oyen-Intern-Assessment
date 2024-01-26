@@ -61,7 +61,7 @@ $ docker run -d -p <host-port>:8000 --name <your-container-name> <your-image-nam
 	4. Successfully login to the Home Page!
 ```
 
-[Video Demo]("https://youtu.be/EIZAGg71J9o")
+[Video Demo](https://youtu.be/EIZAGg71J9o)
 
 
 ## Author
