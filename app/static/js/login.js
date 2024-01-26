@@ -16,13 +16,17 @@ document.getElementById('login-form').addEventListener('submit', (e) => {
     credentials: 'include'
   })
   .then(response => {
+    if (response.status !== 200) {
+      showError("Invalid Username or Password!")
+      throw new Error("Invalid Username or Password!");
+    }
     return response.json();
   })
   .then(data => {
     window.location = "/";
   })
   .catch(error => {
-    console.error('There has been a problem with your fetch operation:', error);
-    window.location = "/";
+    showError("Invalid Username or Password!")
+    throw new Error("Invalid Username or Password!");
   });
 })
