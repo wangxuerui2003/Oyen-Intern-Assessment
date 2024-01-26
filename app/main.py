@@ -46,7 +46,12 @@ async def index(
 
 
 @app.get("/login")
-async def login(request: Request):
+async def login(
+    request: Request,
+    current_user: Annotated[User, Depends(get_current_user)]
+):
+    if current_user is not None:
+        return RedirectResponse(url="/")
     return templates.TemplateResponse(
         request=request, name="login.html"
     )
@@ -59,7 +64,12 @@ def logout(response: Response):
 
 
 @app.get("/register")
-async def register_page(request: Request):
+async def register_page(
+    request: Request,
+    current_user: Annotated[User, Depends(get_current_user)]
+):
+    if current_user is not None:
+        return RedirectResponse(url="/")
     return templates.TemplateResponse(
         request=request, name="register.html"
     )
