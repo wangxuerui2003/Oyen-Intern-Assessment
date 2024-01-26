@@ -1,10 +1,12 @@
 # Oyen-Intern-Assessment
 A simple login system with FastAPI + SQLite as backend + database and Vanilla JS as frontend.
 
-## Requirements
+## Requirements (For manual setup)
 Python 3.10+
 <br>
 SQLite3
+<br>
+OpenSSL
 
 
 ## Manual Setup
@@ -14,10 +16,7 @@ SQLite3
 # Install the python packages needed
 $ pip install -r requirements.txt
 
-# Bash
 $ cp .env.example ./app/.env.local
-# Powershell
-$ Copy-Item -Path .\.env.example -Destination .\app\.env.local
 
 $ cd app/
 
@@ -30,7 +29,9 @@ $ openssl rand -hex 32  # copy the output
 
 
 ## Docker Setup (Recommended)
-TODO
+```bash
+$ docker build -t <your-image-name>:<tag> .
+```
 
 
 ## Run it
@@ -48,7 +49,6 @@ $ uvicorn main:app --host 0.0.0.0 --port <desired-port>
 
 **Docker**
 ```bash
-$ docker build -t <your-image-name>:<tag> .
 $ docker run -d -p <host-port>:8000 --name <your-container-name> <your-image-name>
 ```
 
