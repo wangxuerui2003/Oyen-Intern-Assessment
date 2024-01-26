@@ -16,9 +16,6 @@ class User(BaseModel):
     full_name: str | None = None
     is_active: bool = True
 
-    class Config:
-        orm_mode = True
-
 
 class UserCreate(User):
     password: str
