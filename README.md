@@ -54,8 +54,17 @@ $ docker run -d -p <host-port>:8000 --name <your-container-name> <your-image-nam
 
 
 ## Usage
-TODO: Describe the usage in text
-TODO: Film a short video
+```
+	1. Run the FastAPI server
+	2. Open a Web Browser and navigate to localhost:8000
+	3. Login if you already have an account, otherwise click register and register an account.
+	4. Successfully login to the Home Page!
+```
+
+<video controls width="400">
+    <source src="https://youtu.be/3iMkvm7l8cI" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
 
 
 ## Author
