@@ -36,8 +36,12 @@ async def index(
     if current_user is None:
         # User is not authenticated, redirect to the login page
         return RedirectResponse(url="/login")
+    name = current_user.full_name
+    if name == '':
+        name = current_user.username
+
     return templates.TemplateResponse(
-        request=request, name="index.html"
+        request=request, name="index.html", context={'name': name}
     )
 
 
